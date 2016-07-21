@@ -1,4 +1,4 @@
-{% extends parent_template|default:"oraganizer/base_blog.html" %}
+{% extends parent_template|default:"blog/base_blog.html" %}
 
 {% block title %}
   {{ block.super}} - {{post.title|title}}
@@ -18,7 +18,7 @@
 
     {{ post.text|linebreaks }}
 
-    {{ if post.startups.all or post.tags.all }}
+    {% if post.startups.all or post.tags.all %}
       <footer>
         {% if post.startups.all %}
           <section>
