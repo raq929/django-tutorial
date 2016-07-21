@@ -1,11 +1,11 @@
-{% extends parent_template|default:"oraganizer/base_organizer.html" %}
+{% extends parent_template|default:"organizer/base_organizer.html" %}
 
 {% block title %}
   {{ block.super}} - {{ tag.name|title }}
 {% endblock %}
 
 {% block content %}
-<h2>{{ tag.name }} </h2>
+<h2>{{ tag.name|title }} </h2>
   {% if tag.startup_set.all %}
     <section>
       <h3>Startup{{ tag.startup_set.count|pluralize }}</h3>
@@ -21,19 +21,19 @@
         {% endfor %}
       </ul>
     </section>
-  {{ endif }}
+  {% endif %}
   {% if tag.blog_posts.all %}
-  <section>
-    <h3>Blog Post{{ tag.blog_posts.count|pluralize }}</h3>
-    <ul>
-      {% for post in tag.blog.posts.all %}
-        <li><a href="">
-          {{ post.title }}
-        </a></li>
-      {% endfor %}
-    </ul>
-  </section>
-  {{ endif }}
+    <section>
+      <h3>Blog Post{{ tag.blog_posts.count|pluralize }}</h3>
+      <ul>
+        {% for post in tag.blog_posts.all %}
+          <li><a href="">
+            {{ post.title }}
+          </a></li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
   {% if not tag.startup_set.all and not tag.blog.posts.all %}
     <p>This tag is not related to any content.</p>
   {% endif %}
