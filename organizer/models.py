@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 class Tag(models.Model):
   name = models.CharField(max_length=31, unique=True)
@@ -12,6 +13,10 @@ class Tag(models.Model):
 
   class Meta:
     ordering =['name']
+
+  def get_absolute_url(self):
+    return reverse('organizer_tag_detail',
+      kwargs={ 'slug': self.slug })
 
 class Startup(models.Model):
   name = models.CharField(max_length=31)
