@@ -2,11 +2,12 @@ from django.shortcuts import (
   get_object_or_404, redirect, render)
 from django.template import Context, loader
 from django.views.generic import View
+from django.core.urlresolvers import reverse_lazy
 
 from django.http.response import HttpResponse
 from .models import NewsLink, Startup, Tag
 from .forms import NewsLinkForm, TagForm, StartupForm
-from .utils import ObjectCreateMixin, ObjectUpdateMixin
+from .utils import ObjectCreateMixin, ObjectDeleteMixin, ObjectUpdateMixin
 
 class NewsLinkCreate(ObjectCreateMixin, View):
   form_class = NewsLinkForm
@@ -78,6 +79,11 @@ def tag_detail(request, slug):
 class TagCreate(ObjectCreateMixin, View):
   form_class = TagForm
   template_name = 'organizer/tag_form.html'
+
+class TagDelete(ObjectDeleteMixin, View):
+  model = Tag
+  success_url = reverse_lazy('organizer_tag_list')
+  template_name = 'organizer/tag_confirm_delete.html'
 
 class TagUpdate(ObjectUpdateMixin, View):
   form_class = TagForm
