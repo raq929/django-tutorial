@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.http.response import HttpResponse
 from .models import NewsLink, Startup, Tag
 from .forms import NewsLinkForm, TagForm, StartupForm
-from .utils import ObjectCreateMixin
+from .utils import ObjectCreateMixin, ObjectUpdateMixin
 
 class NewsLinkCreate(ObjectCreateMixin, View):
   form_class = NewsLinkForm
@@ -59,6 +59,11 @@ def tag_detail(request, slug):
 class TagCreate(ObjectCreateMixin, View):
   form_class = TagForm
   template_name = 'organizer/tag_form.html'
+
+class TagUpdate(ObjectUpdateMixin, View):
+  form_class = TagForm
+  model = Tag
+  template_name = 'organizer/tag_form_update.html'
 
 class StartupCreate(ObjectCreateMixin, View):
   form_class = StartupForm
