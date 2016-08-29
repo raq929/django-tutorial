@@ -70,40 +70,54 @@ def tag_list(request):
     'organizer/tag_list.html',
     {'tag_list': Tag.objects.all() })
 
+
 def tag_detail(request, slug):
   tag = get_object_or_404(Tag, slug__iexact=slug)
   return render(request,
     'organizer/tag_detail.html',
     { 'tag': tag })
 
+
 class TagCreate(ObjectCreateMixin, View):
   form_class = TagForm
   template_name = 'organizer/tag_form.html'
+
 
 class TagDelete(ObjectDeleteMixin, View):
   model = Tag
   success_url = reverse_lazy('organizer_tag_list')
   template_name = 'organizer/tag_confirm_delete.html'
 
+
 class TagUpdate(ObjectUpdateMixin, View):
   form_class = TagForm
   model = Tag
   template_name = 'organizer/tag_form_update.html'
 
+
 class StartupCreate(ObjectCreateMixin, View):
   form_class = StartupForm
   template_name = 'organizer/startup_form.html'
+
+
+class StartupDelete(ObjectDeleteMixin, View):
+  model = Startup
+  success_url = reverse_lazy('organizer_startup_list')
+  template_name = 'organizer/startup_confirm_delete.html'
+
 
 class StartupUpdate(ObjectUpdateMixin, View):
   form_class = StartupForm
   model = Startup
   template_name = 'organizer/startup_form_update.html'
 
+
 def startup_list(request):
   return render(
     request,
     'organizer/startup_list.html',
     {'startup_list': Startup.objects.all() })
+
 
 def startup_detail(request, slug):
   startup = get_object_or_404(Startup, slug__iexact=slug)
