@@ -1,0 +1,27 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+{{ block.super }} - Delete Post
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+      <form
+        action="{{ post.get_delete_url }}"
+        method="post"
+      >
+      {% csrf_token %}
+      <p>
+        Are you sure you want to delete
+        link {{ post.title|title }} from
+        {{ newslink.startup.name }}?
+      </p>
+      <a href="{{ newslink.startup.get_absolute_url }}">
+        Cancel</a>
+      <button type="submit">
+        Delete Link</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

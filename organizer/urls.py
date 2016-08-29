@@ -1,7 +1,8 @@
 from django.conf.urls import url
 
 from .views import (
-  NewsLinkCreate, NewsLinkUpdate, StartupCreate, StartupUpdate,
+  NewsLinkCreate, NewsLinkDelete, NewsLinkUpdate,
+  StartupCreate, StartupUpdate,
   TagCreate, TagUpdate, startup_detail, startup_list,
   tag_detail, tag_list)
 
@@ -9,6 +10,9 @@ urlpatterns = [
   url(r'^newslink/create/$',
     NewsLinkCreate.as_view(),
     name='organizer_newslink_create'),
+  url(r'^newslink/delete/(?P<pk>\d+)/$',
+    NewsLinkDelete.as_view(),
+    name='organizer_newslink_delete'),
   url(r'^newslink/update/(?P<pk>\d+)/$',
     NewsLinkUpdate.as_view(),
     name='organizer_newslink_update'),

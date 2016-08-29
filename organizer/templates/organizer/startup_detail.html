@@ -41,8 +41,12 @@
               <a href="{{ newslink.link }}">
                 {{ newslink.title|title }}
               </a>
-              <a href="{{ newslink.get_update_url }}">
-                Edit Link</a>
+              <ul>
+                <li><a href="{{ newslink.get_update_url }}">
+                  Edit Link</a></li>
+                <li><a href="{{ newslink.get_delete_url }}">
+                  Delete Link</a></li>
+              </ul>
             </li>
             {% endfor %}
           </ul>
