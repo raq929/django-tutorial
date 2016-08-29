@@ -23,10 +23,12 @@
         {% endfor %}
     </dl>
     {{ startup.description|linebreaks }}
-
+      <a href="{% url 'organizer_newslink_create' %}">
+              Add Article</a></p>
       {% if startup.newslink_set.all %}
         <section>
           <h3>Recent News</h3>
+          <p>
           <ul>
             {% for newslink in startup.newslink_set.all %}
             <li>
