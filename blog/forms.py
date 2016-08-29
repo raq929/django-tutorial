@@ -8,4 +8,4 @@ class PostForm(forms.ModelForm):
     fields = '__all__'
 
   def clean_slug(self):
-    return self.cleaned_data['slug'].lower
+    return self.cleaned_data['slug'].lower()

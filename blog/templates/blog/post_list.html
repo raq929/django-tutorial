@@ -18,6 +18,12 @@
               {{ post.title|title }}
             </a>
           </h2>
+          <ul>
+            <li>
+              <a href="{{ post.get_update_url }}">
+                Edit Post</a>
+            </li>
+          </ul>
             Written on:
             <time datetime="{{ post.pub_date|date:"Y-m-d" }}">
               {{ post.pub_date|date:"l, F j, Y" }}
