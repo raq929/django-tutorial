@@ -15,6 +15,7 @@ class PostCreate(View):
       self.template_name,
       {'form': self.form_class() })
   def post(self, request):
+    bound_form = self.form_class(request.POST)
     if bound_form.is_valid():
         new_post = bound_form.save()
         return redirect(new_post)
@@ -23,6 +24,29 @@ class PostCreate(View):
         request,
         self.template_name,
         { 'form': bound_form  })
+
+
+class PostDelete(View):
+  def get(self, request, year, month, slug):
+    post = get_object_or_404(
+      Post,
+      pub_date__year=year,
+      pub_date__month=month,
+      slug=slug)
+    return render(
+      request, 
+      'blog/post_confirm_delete.html',
+      { 'post': post })
+
+  def post(self, request, year, month, slug):
+    post = get_object_or_404(
+      Post,
+      pub_date__year=year,
+      pub_date__month=month,
+      slug=slug)
+    post.delete()
+    return redirect('blog_post_list')
+
 
 class PostList(View):
 

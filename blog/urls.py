@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import post_detail, PostCreate, PostList, PostUpdate
+from .views import post_detail, PostCreate, PostDelete, PostList, PostUpdate
 
 urlpatterns = [
   url(r'^$',
@@ -14,6 +14,12 @@ urlpatterns = [
       r'(?P<slug>[\w\-]+)/$',
       post_detail,
       name='blog_post_detail'),
+  url(r'^(?P<year>\d{4})/'
+      r'(?P<month>\d{1,2})/'
+      r'(?P<slug>[\w\-]+)/'
+      r'delete/$',
+      PostDelete.as_view(),
+      name='blog_post_delete'),
   url(r'^(?P<year>\d{4})/'
       r'(?P<month>\d{1,2})/'
       r'(?P<slug>[\w\-]+)/'
