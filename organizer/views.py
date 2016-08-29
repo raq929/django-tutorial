@@ -69,6 +69,11 @@ class StartupCreate(ObjectCreateMixin, View):
   form_class = StartupForm
   template_name = 'organizer/startup_form.html'
 
+class StartupUpdate(ObjectUpdateMixin, View):
+  form_class = StartupForm
+  model = Startup
+  template_name = 'organizer/startup_form_update.html'
+
 def startup_list(request):
   return render(
     request,
