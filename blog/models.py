@@ -11,7 +11,11 @@ class Post(models.Model):
     unique_for_month='pub_date')
   text = models.TextField()
   pub_date = models.DateField('date published', auto_now_add=True)
-  tags = models.ManyToManyField(Tag, related_name='blog_posts')
+  tags = models.ManyToManyField(
+    Tag,
+    blank=True,
+    related_name='blog_posts',
+  )
   startups = models.ManyToManyField(Startup, related_name='blog_posts')
 
   def __str__(self):
